@@ -37,7 +37,16 @@
               <p>Whether you're checking out our style, looking for ideas, or simply wanting to see the quality we deliver, we hope this collection helps you understand what it's like to work with us and the level of detail you can expect.</p>
             </div>
             <div class="projects-banner" aria-label="Project image showcase">
-              <div class="projects-banner-track"></div>
+              <div class="projects-gallery-buttons">
+                <button type="button" class="gallery-button gallery-left" data-gallery="drawings" aria-label="Technical Drawings">
+                  <span class="gallery-label">Technical Drawings</span>
+                  <div class="gallery-preview" aria-hidden="true"></div>
+                </button>
+                <button type="button" class="gallery-button gallery-right" data-gallery="renders" aria-label="3D Renders">
+                  <span class="gallery-label">3D Renders</span>
+                  <div class="gallery-preview" aria-hidden="true"></div>
+                </button>
+              </div>
             </div>
           </div>
         </section>
@@ -117,20 +126,24 @@
   </div>
 
   <div class="modal-overlay" id="servicesModal" aria-hidden="true">
-    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="servicesModalTitle">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="servicesModalTitle">
       <button type="button" class="modal-close" aria-label="Close">×</button>
       <h2 id="servicesModalTitle">Services</h2>
-      <ul>
+      <ul class="services-list">
         <li>
-          Technical Drawings (Design Stage, Shop Drawings, Manufacturing Drawings, As-builts).
-          <p class="service-note small">We can support you in every stage of the project as it develops.</p>
+          <strong>Technical Drawings</strong>
+          <p class="service-note small"><em>(Design Stage, Shop Drawings, Manufacturing Drawings, As-builts).</em> We can support you in every stage of the project as it develops.</p>
         </li>
         <li>
-          Take-offs based on project documentation.
-          <p class="service-note small">Need some help with material sqm? Just provide us with project documentation.</p>
+          <strong>Take-offs</strong>
+          <p class="service-note small"><em>based on project documentation.</em> Need some help with material sqm? Just provide us with project documentation.</p>
         </li>
-        <li>3D modelling, 3D Rendering,</li>
-        <li>Architectural Sketching and Visual Representation.</li>
+        <li>
+          <strong>3D modelling, 3D Rendering</strong>
+        </li>
+        <li>
+          <strong>Architectural Visualisation</strong>
+        </li>
       </ul>
       <p class="service-note small">**We will estimate number of hours that the job will take to provide a Quote, then track actual worked time from start to finish on a flat hourly rate.</p>
       <p class="service-note small">**Invoice could be lower than Quote if total number of hours were reduced while working (job achieved in less number of hours than originally estimated).</p>

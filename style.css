@@ -453,6 +453,29 @@ body.no-scroll {
   font-style: italic;
 }
 
+/* Services modal: tighter list spacing and description styling */
+.modal-card .services-list {
+  list-style: disc;
+  padding-left: 1.2rem;
+}
+.modal-card .services-list li {
+  margin-bottom: 0.45rem;
+  padding-bottom: 0.25rem;
+}
+.modal-card .services-list strong {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--ink);
+}
+.modal-card .services-list .service-desc {
+  display: block;
+  margin-top: 0.08rem;
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
 .modal-card .service-note {
   margin-top: 0.25rem;
   margin-bottom: 0.55rem;
@@ -604,6 +627,53 @@ body.no-scroll {
   to {
     transform: translateX(-50%);
   }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-tagline-container {
+  position: relative;
+  height: auto;
+  max-width: 34rem;
+}
+
+.hero-tagline {
+  font-family: "Momo Trust Display", cursive;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  line-height: 1.05;
+  font-weight: 700;
+  color: var(--ink);
+  max-width: 34rem;
+  margin-top: 0;
+  margin-left: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.hero-tagline.active {
+  position: static;
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
 }
 
 @media (max-width: 920px) {
@@ -1124,6 +1194,82 @@ body.no-scroll {
   background: rgba(255, 255, 255, 0.06);
   padding: 0;
   max-width: none;
+}
+
+/* Two large square gallery buttons replacing the sliding banner */
+.projects-gallery-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+  justify-content: center;
+  padding: 1.2rem;
+}
+
+.gallery-button {
+  position: relative;
+  width: min(48vw, 520px);
+  height: min(24vw, 260px);
+  max-width: 520px;
+  max-height: 260px;
+  border-radius: 18px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: rgba(255,255,255,0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  font-family: "Momo Trust Display", cursive;
+}
+
+.gallery-button:focus {
+  outline: 3px solid rgba(29,29,27,0.12);
+}
+
+.gallery-left { background: rgba(255,255,255,0.3); }
+.gallery-right { background: rgba(255,255,255,0.6); }
+
+.gallery-preview {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.12;
+  transition: opacity 0.22s ease, transform 0.35s ease;
+  border-radius: inherit;
+}
+
+.gallery-button:hover .gallery-preview,
+.gallery-button:focus .gallery-preview {
+  opacity: 0.28;
+  transform: scale(1.03);
+}
+
+.gallery-label {
+  position: relative;
+  z-index: 2;
+  font-family: "Momo Trust Display", cursive;
+  font-size: clamp(1.2rem, 3.8vw, 2rem);
+  color: var(--ink);
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  text-align: center;
+  pointer-events: none;
+}
+
+.gallery-button:hover .gallery-label,
+.gallery-button:focus .gallery-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 920px) {
+  .projects-gallery-buttons { flex-direction: column; gap: 0.9rem; padding: 0.8rem; }
+  .gallery-button { width: 100%; height: auto; aspect-ratio: 3 / 1; max-height: 320px; }
+  .gallery-label { font-size: clamp(1rem, 5.2vw, 1.4rem); }
 }
 
 .projects-banner-track {

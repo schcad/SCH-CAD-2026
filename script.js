@@ -146,126 +146,112 @@ const initQuoteForm = () => {
 };
 
 const initProjectsGallery = () => {
-  const gallery = document.querySelector('.projects-banner-track');
   const lightbox = document.querySelector('.project-lightbox');
   const lightboxImage = lightbox?.querySelector('img');
   const closeButton = lightbox?.querySelector('.lightbox-close');
   const prevButton = lightbox?.querySelector('.lightbox-prev');
   const nextButton = lightbox?.querySelector('.lightbox-next');
 
-  if (!gallery || !lightbox || !lightboxImage || !closeButton || !prevButton || !nextButton) return;
+  if (!lightbox || !lightboxImage || !closeButton || !prevButton || !nextButton) return;
 
-  const imageFiles = [
-    '01-CC-EXT-CANTINA 1.jpg',
-    '01-CC-EXT-CANTINA 2.jpg',
-    '01-CC-EXT-INTER 2.jpg',
-    '01-CC-EXT-INTER 4.jpg',
-    '01-CC-EXT-QUINCHO 2.jpg',
-    '01-CC-EXT-QUINCHO 3.jpg',
-    '01-CC-INT-CANTINA 1.jpg',
-    '01-CC-INT-CANTINA 2.jpg',
-    '01-CC-INT-CANTINA 3.jpg',
-    '101 Miller St 1.jpg',
-    '101 Miller St 2.jpg',
-    '101 Miller St 3.jpg',
-    '101 Miller St 4.jpg',
-    '101 Miller St 5.jpg',
-    '101 Miller St 6.jpg',
-    '101 Miller St 7.jpg',
-    '15edit.jpg',
-    '17edit.jpg',
-    '18edit.jpg',
-    '19edit.jpg',
-    '21edit.jpg',
-    '22edit.jpg',
-    '23edit.jpg',
-    '24edit.jpg',
-    '25edit.jpg',
-    '27edit.jpg',
-    '29edit.jpg',
-    '30edit.jpg',
-    '31edit.jpg',
-    '32edit.jpg',
-    '36edit.jpg',
-    '37edit.jpg',
-    'BMW 1.jpg',
-    'BMW 2.jpg',
-    'Breathing Column 1.JPG',
-    'Chadstone 1.jpg',
-    'Chadstone 3.jpg',
-    'Chadstone 5.jpg',
-    'Chadstone 7.jpg',
-    'INT CLOSEUP 3.jpg',
-    'INT CLOSEUP 4.jpg',
-    'INT COCINA 2.jpg',
-    'INT HAB 1.jpg',
-    'INT HALL .jpg',
-    'INT HALL 2.jpg',
-    'INT LIVING 01.jpg',
-    'INT LIVING 02.jpg',
-    'INT LIVING 03.jpg',
-    'INT PASILLO .jpg',
-    'MetroWest 1.jpg',
-    'MetroWest 2.jpg',
-    'MetroWest 3.jpg',
-    'MetroWest 4.jpg',
-    'MetroWest 5.jpg',
-    'MetroWest 6.jpg',
-    'MetroWest 7.jpg',
-    'MetroWest 8.jpg',
-    'MetroWest 9.jpg',
-    'MSLCP.jpg',
-    'Pots.jpg',
-    'Standard Details (B) 1.jpg',
-    'Standard Details (B) 10.jpg',
-    'Standard Details (B) 11.jpg',
-    'Standard Details (B) 12.jpg',
-    'Standard Details (B) 13.jpg',
-    'Standard Details (B) 14.jpg',
-    'Standard Details (B) 15.jpg',
-    'Standard Details (B) 2.jpg',
-    'Standard Details (B) 3.jpg',
-    'Standard Details (B) 4.jpg',
-    'Standard Details (B) 5.jpg',
-    'Standard Details (B) 6.jpg',
-    'Standard Details (B) 7.jpg',
-    'Standard Details (B) 8.jpg',
-    'Standard Details (B) 9.jpg'
-  ];
-
-  const projectImages = imageFiles.map((file) => ({
-    src: `Images/Project images/${file}`,
-    alt: file.replace(/\.[^/.]+$/, '')
-  }));
-
-  gallery.innerHTML = '';
-
-  if (!projectImages.length) {
-    gallery.innerHTML = '<p class="gallery-empty">No project images available.</p>';
-    return;
-  }
-
-  const duplicatedImages = [...projectImages, ...projectImages];
-  duplicatedImages.forEach((image, index) => {
-    const slide = document.createElement('button');
-    slide.type = 'button';
-    slide.className = 'projects-banner-slide';
-    slide.dataset.index = String(index % projectImages.length);
-    slide.innerHTML = `<img src="${image.src}" alt="${image.alt}" loading="lazy">`;
-    gallery.appendChild(slide);
-  });
-
-  let currentIndex = 0;
-  const totalCount = projectImages.length;
-
-  const setLightboxImage = (index) => {
-    currentIndex = index;
-    lightboxImage.src = projectImages[currentIndex].src;
-    lightboxImage.alt = projectImages[currentIndex].alt;
+  // Image lists discovered in the workspace. Drawings and renders folders.
+  const galleries = {
+    drawings: [
+      'Images/Project images/drawings/Standard Details (B) 9.jpg',
+      'Images/Project images/drawings/Standard Details (B) 8.jpg',
+      'Images/Project images/drawings/Standard Details (B) 7.jpg',
+      'Images/Project images/drawings/Standard Details (B) 6.jpg',
+      'Images/Project images/drawings/Standard Details (B) 5.jpg',
+      'Images/Project images/drawings/Standard Details (B) 4.jpg',
+      'Images/Project images/drawings/Standard Details (B) 3.jpg',
+      'Images/Project images/drawings/Standard Details (B) 2.jpg',
+      'Images/Project images/drawings/Standard Details (B) 15.jpg',
+      'Images/Project images/drawings/Standard Details (B) 14.jpg',
+      'Images/Project images/drawings/Standard Details (B) 13.jpg',
+      'Images/Project images/drawings/Standard Details (B) 12.jpg',
+      'Images/Project images/drawings/Standard Details (B) 11.jpg',
+      'Images/Project images/drawings/Standard Details (B) 10.jpg',
+      'Images/Project images/drawings/Standard Details (B) 1.jpg',
+      'Images/Project images/drawings/Pots.jpg',
+      'Images/Project images/drawings/MSLCP.jpg',
+      'Images/Project images/drawings/MetroWest 9.jpg',
+      'Images/Project images/drawings/MetroWest 8.jpg',
+      'Images/Project images/drawings/MetroWest 7.jpg',
+      'Images/Project images/drawings/MetroWest 6.jpg',
+      'Images/Project images/drawings/MetroWest 5.jpg',
+      'Images/Project images/drawings/MetroWest 4.jpg',
+      'Images/Project images/drawings/MetroWest 3.jpg',
+      'Images/Project images/drawings/MetroWest 2.jpg',
+      'Images/Project images/drawings/MetroWest 1.jpg',
+      'Images/Project images/drawings/BMW 2.jpg',
+      'Images/Project images/drawings/BMW 1.jpg',
+      'Images/Project images/drawings/101 Miller St 7.jpg',
+      'Images/Project images/drawings/101 Miller St 6.jpg',
+      'Images/Project images/drawings/101 Miller St 5.jpg',
+      'Images/Project images/drawings/101 Miller St 4.jpg',
+      'Images/Project images/drawings/101 Miller St 3.jpg',
+      'Images/Project images/drawings/101 Miller St 2.jpg',
+      'Images/Project images/drawings/101 Miller St 1.jpg'
+    ],
+    renders: [
+      'Images/Project images/renders/INT PASILLO .jpg',
+      'Images/Project images/renders/INT LIVING 03.jpg',
+      'Images/Project images/renders/INT LIVING 02.jpg',
+      'Images/Project images/renders/INT LIVING 01.jpg',
+      'Images/Project images/renders/INT HALL 2.jpg',
+      'Images/Project images/renders/INT HALL .jpg',
+      'Images/Project images/renders/INT HAB 1.jpg',
+      'Images/Project images/renders/INT COCINA 2.jpg',
+      'Images/Project images/renders/INT CLOSEUP 4.jpg',
+      'Images/Project images/renders/INT CLOSEUP 3.jpg',
+      'Images/Project images/renders/Chadstone 7.jpg',
+      'Images/Project images/renders/Chadstone 5.jpg',
+      'Images/Project images/renders/Chadstone 3.jpg',
+      'Images/Project images/renders/Chadstone 1.jpg',
+      'Images/Project images/renders/Breathing Column 1.JPG',
+      'Images/Project images/renders/37edit.jpg',
+      'Images/Project images/renders/36edit.jpg',
+      'Images/Project images/renders/32edit.jpg',
+      'Images/Project images/renders/31edit.jpg',
+      'Images/Project images/renders/30edit.jpg',
+      'Images/Project images/renders/29edit.jpg',
+      'Images/Project images/renders/27edit.jpg',
+      'Images/Project images/renders/25edit.jpg',
+      'Images/Project images/renders/24edit.jpg',
+      'Images/Project images/renders/23edit.jpg',
+      'Images/Project images/renders/22edit.jpg',
+      'Images/Project images/renders/21edit.jpg',
+      'Images/Project images/renders/19edit.jpg',
+      'Images/Project images/renders/18edit.jpg',
+      'Images/Project images/renders/17edit.jpg',
+      'Images/Project images/renders/15edit.jpg',
+      'Images/Project images/renders/01-CC-INT-CANTINA 3.jpg',
+      'Images/Project images/renders/01-CC-INT-CANTINA 2.jpg',
+      'Images/Project images/renders/01-CC-INT-CANTINA 1.jpg',
+      'Images/Project images/renders/01-CC-EXT-QUINCHO 3.jpg',
+      'Images/Project images/renders/01-CC-EXT-QUINCHO 2.jpg',
+      'Images/Project images/renders/01-CC-EXT-INTER 4.jpg',
+      'Images/Project images/renders/01-CC-EXT-INTER 2.jpg',
+      'Images/Project images/renders/01-CC-EXT-CANTINA 2.jpg',
+      'Images/Project images/renders/01-CC-EXT-CANTINA 1.jpg'
+    ]
   };
 
-  const openLightbox = (index) => {
-    setLightboxImage(index);
+  let currentGallery = null;
+  let currentIndex = 0;
+
+  const setLightboxImage = (index) => {
+    const images = galleries[currentGallery] || [];
+    if (!images.length) return;
+    currentIndex = (index + images.length) % images.length;
+    lightboxImage.src = images[currentIndex];
+    lightboxImage.alt = images[currentIndex].split('/').pop();
+  };
+
+  const openLightbox = (galleryKey, startIndex = 0) => {
+    if (!galleries[galleryKey] || !galleries[galleryKey].length) return;
+    currentGallery = galleryKey;
+    setLightboxImage(startIndex);
     lightbox.classList.add('open');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.classList.add('no-scroll');
@@ -275,17 +261,22 @@ const initProjectsGallery = () => {
     lightbox.classList.remove('open');
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('no-scroll');
+    currentGallery = null;
   };
 
   const moveLightbox = (offset) => {
-    const nextIndex = (currentIndex + offset + totalCount) % totalCount;
-    setLightboxImage(nextIndex);
+    const images = galleries[currentGallery] || [];
+    if (!images.length) return;
+    setLightboxImage(currentIndex + offset);
   };
 
-  gallery.addEventListener('click', (event) => {
-    const slide = event.target.closest('.projects-banner-slide');
-    if (!slide) return;
-    openLightbox(Number(slide.dataset.index));
+  // Wire up gallery buttons and previews
+  document.querySelectorAll('.gallery-button').forEach((btn) => {
+    const key = btn.dataset.gallery;
+    const imgs = galleries[key] || [];
+    const preview = btn.querySelector('.gallery-preview');
+    if (imgs && imgs[0] && preview) preview.style.backgroundImage = `url('${imgs[0]}')`;
+    btn.addEventListener('click', () => openLightbox(key, 0));
   });
 
   closeButton.addEventListener('click', closeLightbox);
@@ -338,6 +329,29 @@ const initHomePageModal = () => {
   }
 };
 
+const initTaglineAnimation = () => {
+  const taglines = document.querySelectorAll('.hero-tagline');
+  if (taglines.length < 2) return;
+  
+  let currentIndex = 0;
+  const displayDuration = 8000; // 8 seconds
+  const fadeDuration = 2000; // 2 seconds for fade animation
+  
+  const rotateTagline = () => {
+    // Remove active class from current tagline
+    taglines[currentIndex].classList.remove('active');
+    
+    // Move to next tagline
+    currentIndex = (currentIndex + 1) % taglines.length;
+    
+    // Add active class to new tagline
+    taglines[currentIndex].classList.add('active');
+  };
+  
+  // Rotate every 30 seconds (plus the fade animation time)
+  setInterval(rotateTagline, displayDuration + fadeDuration);
+};
+
 initBackgroundSlides();
 initImageSlider();
 initModalTriggers();
@@ -345,3 +359,4 @@ initQuoteForm();
 initProjectsGallery();
 initEmailLink();
 initHomePageModal();
+initTaglineAnimation();
